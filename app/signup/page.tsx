@@ -1,4 +1,5 @@
 // pages/signup.js
+/*
 'use client'
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase/server';
@@ -65,3 +66,4 @@ export default function SignupPage() {
     </div>
   );
 }
+*/

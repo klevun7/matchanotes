@@ -1,7 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['ippodotea.com', 'www.marukyu-koyamaen.co.jp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ippodotea.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.marukyu-koyamaen.co.jp',
+      },
+    ],
   },
 };
 

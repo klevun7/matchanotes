@@ -1,68 +1,46 @@
-// pages/login.js
-
-'use client'
-import { useState } from 'react';
-import { supabase } from '@/lib/supabase/server';
-import { useRouter } from 'next/navigation';
+import { login, signup } from "@/app/login/actions"
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-  const router = useRouter();
-
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    try {
-      const { user, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      if (error) throw error;
-      router.push('/'); // Redirect to the homepage after successful login
-    } catch (error) {
-      setError(error.message);
-    }
-  };
-
   return (
-    <div className="max-w-md mx-auto p-6">
-      <h2 className="text-3xl font-bold mb-4">Login</h2>
-      {error && <div className="text-red-500 mb-4">{error}</div>}
-      <form onSubmit={handleLogin}>
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-sm">Email</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border rounded"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="password" className="block text-sm">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 border rounded"
-            required
-          />
-        </div>
+    <form
+      className="max-w-[350px] mx-auto mt-12 p-8 border border-gray-200 rounded-lg bg-white shadow-md flex flex-col gap-4"
+    >
+      <label htmlFor="email" className="font-medium">
+        Email:
+      </label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        required
+        className="p-2 border border-gray-300 rounded text-base"
+      />
+      <label htmlFor="password" className="font-medium">
+        Password:
+      </label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        required
+        className="p-2 border border-gray-300 rounded text-base"
+      />
+      <div className="flex gap-2 mt-4">
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded"
+          formAction={login}
+          className="flex-1 p-2 bg-green-600 text-white border-none rounded font-semibold cursor-pointer hover:bg-green-700 transition"
         >
-          Login
+          Log in
         </button>
-      </form>
-      <p className="mt-4">
-        Don&apos;t have an account?{' '}
-        <a href="/signup" className="text-blue-500">Sign up</a>
-      </p>
-    </div>
-  );
+        <button
+          type="submit"
+          formAction={signup}
+          className="flex-1 p-2 bg-gray-100 text-gray-900 border border-gray-300 rounded font-semibold cursor-pointer hover:bg-gray-200 transition"
+        >
+          Sign up
+        </button>
+      </div>
+    </form>
+  )
 }
