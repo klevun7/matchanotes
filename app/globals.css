@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --color-matcha: #44624a;
+  --color-sage: #8ba888;
+  
+}
 
 body {
-  /* @apply bg-white text-forest; */
+  
 }

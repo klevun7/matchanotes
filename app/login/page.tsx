@@ -29,7 +29,7 @@ export default function LoginPage() {
         <button
           type="submit"
           formAction={login}
-          className="flex-1 p-2 bg-green-600 text-white border-none rounded font-semibold cursor-pointer hover:bg-green-700 transition"
+          className="flex-1 p-2 bg-matcha text-white border-none rounded font-semibold cursor-pointer hover:bg-green-700 transition"
         >
           Log in
         </button>
