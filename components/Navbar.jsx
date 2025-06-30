@@ -3,10 +3,10 @@
 
 import Link from "next/link";
 import { useAuth } from "@/components/AuthProvider"; // Import useAuth
-import { logout } from "@/app/actions/actions"; // Import your logout server action
+import { logout } from "@/app/actions/actions"; 
 
 const Navbar = () => {
-  const { user, isLoading } = useAuth(); // Get user and isLoading from context
+  const { user, isLoading } = useAuth(); 
 
   if (isLoading) {
     return (
@@ -14,7 +14,7 @@ const Navbar = () => {
         <Link href="/" className="text-2xl font-bold text-forest">
           matchanotes
         </Link>
-        <div>Loading...</div> {/* Show a loading state */}
+        <div>Loading...</div> 
       </div>
     );
   }
@@ -33,11 +33,11 @@ const Navbar = () => {
             <Link href="/profile" className="hover:text-matcha fony-semibold">
               profile
             </Link>
-            <form action={logout}> {/* Use form with Server Action for logout */}
+            <form action={logout}>
               <button
                 type="submit"
                 className="bg-sage text-white px-4 py-2 rounded-lg hover:bg-matcha transition-colors duration-300"
-              >``
+              >
                 logout
               </button>
             </form>
@@ -49,9 +49,6 @@ const Navbar = () => {
             </Link>
             <Link href="/login" className="hover:text-matcha font-semibold">
               login
-            </Link>
-            <Link href="/signup" className="hover:text-matcha font-semibold">
-              sign up
             </Link>
           </>
         )}
