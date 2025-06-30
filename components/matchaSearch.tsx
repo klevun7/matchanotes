@@ -2,20 +2,11 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { searchMatchaAction } from '@/app/login/actions';
+import { searchMatchaAction,  } from '@/app/actions/actions';
 import Link from 'next/link'; 
 import Image from 'next/image'; 
 import { ArrowRightIcon } from '@heroicons/react/24/solid'; 
-
-// Define the type for your matcha data
-interface MatchaProduct {
-  id: string;
-  name: string;
-  brand: string;
-  price: number;
-  image_url?: string;
-  notes?: string[];
-}
+import { MatchaProduct } from '@/types/product'; 
 
 export default function MatchaSearchWithActions() {
   const [searchTerm, setSearchTerm] = useState('');

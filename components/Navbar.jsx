@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { useAuth } from "@/components/AuthProvider"; // Import useAuth
-import { logout } from "@/app/login/actions"; // Import your logout server action
+import { logout } from "@/app/actions/actions"; // Import your logout server action
 
 const Navbar = () => {
   const { user, isLoading } = useAuth(); // Get user and isLoading from context

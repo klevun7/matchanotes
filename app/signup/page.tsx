@@ -2,7 +2,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { signup } from "@/app/login/actions";
+import { signup } from "@/app/actions/actions";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react"; // Import useState for delay state
 
