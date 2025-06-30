@@ -1,11 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-matcha: #44624a;
+  --color-matcha: #658c5e;
   --color-sage: #8ba888;
+  --color-matcha-light:#c0cfb2;
+  --color-cream: #f1ebe1;
   
 }
 
 body {
+  --font-family: 'Inter', sans-serif;
+  font-family: var(--font-family);
+  color: var(--color-matcha);
+
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
   
 }

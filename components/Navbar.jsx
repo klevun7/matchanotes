@@ -12,7 +12,7 @@ const Navbar = () => {
     return (
       <div className="flex justify-between items-center p-4 shadow-md bg-white">
         <Link href="/" className="text-2xl font-bold text-forest">
-          🍵
+          matchanotes
         </Link>
         <div>Loading...</div> {/* Show a loading state */}
       </div>
@@ -21,37 +21,37 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-between items-center p-4 shadow-md bg-white">
-      <Link href="/" className="text-4xl font-bold text-forest">
-        🍵
+      <Link href="/" className="text-2xl font-bold text-forest">
+        matchanotes
       </Link>
       <div className="flex space-x-6 items-center">
         {user ? (
           <>
           <Link href="/matcha" className="hover:text-matcha font-semibold">
-              Matcha
+              matcha
             </Link>
-            <Link href="/profile" className="hover:text-matcha">
-              My Profile
+            <Link href="/profile" className="hover:text-matcha fony-semibold">
+              profile
             </Link>
             <form action={logout}> {/* Use form with Server Action for logout */}
               <button
                 type="submit"
-                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
-              >
-                Logout
+                className="bg-sage text-white px-4 py-2 rounded-lg hover:bg-matcha transition-colors duration-300"
+              >``
+                logout
               </button>
             </form>
           </>
         ) : (
           <>
             <Link href="/matcha" className="hover:text-matcha font-semibold">
-              Matcha
+              matcha
             </Link>
             <Link href="/login" className="hover:text-matcha font-semibold">
-              Login
+              login
             </Link>
             <Link href="/signup" className="hover:text-matcha font-semibold">
-              Sign Up
+              sign up
             </Link>
           </>
         )}

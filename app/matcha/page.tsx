@@ -27,7 +27,7 @@ export default async function MatchaPage() {
 
   return (
     <main className="p-8">
-      <h1 className="text-3xl font-bold mb-6">Matcha</h1>
+      <h1 className="text-3xl font-bold mb-6">matcha</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
           <Link href={`/matcha/${product.id}`} key={product.id}>

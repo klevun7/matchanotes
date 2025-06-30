@@ -41,16 +41,16 @@ const MatchaProductPage = async ({ params }) => {
       umami: "#e6dacd",
       nutty: "#9e7e4f",
       grassy: "#779c46",
-      creamy: "#b6e065",
-      vegetal: "#d3f2eb",
-      sweet: "#f8d2d0",
-      bitter: "#dcdcdc",
-      floral: "#e8f0fe",
+      creamy: "#f1ebe1",
+      vegetal: "#44624a",
+      sweet: "#f4cccc",
+      bitter: "#ac9b80",
+      floral: "#d9d2e9",
       default: "#ccc",
     };
     return colors[note.toLowerCase()] || colors.default;
   }
-  
+
 
   return (
     <div className="container mx-auto p-6">
@@ -73,10 +73,10 @@ const MatchaProductPage = async ({ params }) => {
           <p className="text-xl text-gray-700 mb-2">{product.brand}</p>
           <p className="text-lg text-gray-600 mb-1">Origin: {product.origin}</p>
           <p className="text-lg text-gray-600 mb-1">Grade: {product.grade}</p>
-          <p className="text-2xl text-green-600 font-semibold mb-4">
+          <p className="text-2xl text-sage font-semibold mb-4">
             ${product.price.toFixed(2)}
           </p>
-          <p className="text-green-700 font-semibold leading-relaxed">&quot;{product.description}&quot;</p>
+          <p className="text-matcha font-semibold leading-relaxed">&quot;{product.description}&quot;</p>
           <div className="mt-6">
             <h2 className="text-xl font-semibold text-gray-800 mb-2">
               Main Notes
@@ -87,8 +87,8 @@ const MatchaProductPage = async ({ params }) => {
                   <div
                     className="absolute inset-0 rounded"
                     style={{
-                      width: `${100 - i * 10}%`, 
-                      backgroundColor: getNoteColor(note), 
+                      width: `${100 - i * 10}%`,
+                      backgroundColor: getNoteColor(note),
                     }}
                   />
                   <span className="relative z-10 pl-2 text-sm text-black font-medium leading-6">
@@ -99,7 +99,8 @@ const MatchaProductPage = async ({ params }) => {
             </div>
           </div>
         </div>
-        <div></div>
+        <div>
+        </div>
       </div>
     </div>
   );

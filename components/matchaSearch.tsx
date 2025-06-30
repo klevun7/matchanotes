@@ -125,13 +125,13 @@ export default function MatchaSearchWithActions() {
         <input
           ref={inputRef}
           type="text"
-          placeholder="Search by name or brand..."
+          placeholder="search by name or brand..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
           onKeyPress={handleKeyPress} // Add key press handler
-          className="flex-grow p-3 text-lg border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-sage" // flex-grow makes it take available space
+          className="flex-grow p-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-sage" // flex-grow makes it take available space
         />
         <button
           onClick={handleArrowButtonClick}
@@ -173,7 +173,7 @@ export default function MatchaSearchWithActions() {
                 )}
                 <div>
                   <strong className="text-gray-800">{product.name}</strong>
-                  <p className="text-sm text-gray-500">{product.brand} - ${product.price.toFixed(2)}</p>
+                  <p className="text-sm font-semibold text-gray-500">{product.brand}</p>
                 </div>
               </Link>
             </li>
@@ -203,7 +203,6 @@ export default function MatchaSearchWithActions() {
                 )}
                 <h3 className="text-xl font-semibold mb-1 text-green-800">{product.name}</h3>
                 <p className="text-gray-700">{product.brand}</p>
-                <p className="text-lg font-bold text-green-700 mt-1">${product.price.toFixed(2)}</p>
               </Link>
             </div>
           ))}
