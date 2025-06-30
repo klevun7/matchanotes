@@ -30,7 +30,7 @@ const Navbar = () => {
           <Link href="/matcha" className="hover:text-matcha font-semibold">
               matcha
             </Link>
-            <Link href="/profile" className="hover:text-matcha fony-semibold">
+            <Link href="/profile" className="hover:text-matcha font-semibold">
               profile
             </Link>
             <form action={logout}>
