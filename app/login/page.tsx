@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { login, signup } from "@/app/actions/actions"
+import Link from 'next/link'
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -12,11 +13,11 @@ export default function LoginPage() {
   const handleLogin = async (formData: FormData) => {
     setIsLoading(true)
     setMessage('')
-    
+
     try {
       const result = await login(formData)
       setMessage(result.message)
-      
+
       if (result.success && result.redirectPath) {
         router.push(result.redirectPath)
       }
@@ -27,23 +28,7 @@ export default function LoginPage() {
     }
   }
 
-  const handleSignup = async (formData: FormData) => {
-    setIsLoading(true)
-    setMessage('')
-    
-    try {
-      const result = await signup(formData)
-      setMessage(result.message)
-      
-      if (result.success && result.redirectPath) {
-        router.push(result.redirectPath)
-      }
-    } catch (error) {
-      setMessage('An error occurred during signup')
-    } finally {
-      setIsLoading(false)
-    }
-  }
+
 
   return (
     <form
@@ -69,17 +54,16 @@ export default function LoginPage() {
         required
         className="p-2 border border-gray-300 rounded text-base"
       />
-      
+
       {message && (
-        <div className={`p-2 rounded text-sm ${
-          message.includes('successful') || message.includes('check your email') 
-            ? 'bg-green-100 text-green-800' 
-            : 'bg-red-100 text-red-800'
-        }`}>
+        <div className={`p-2 rounded text-sm ${message.includes('successful') || message.includes('check your email')
+          ? 'bg-green-100 text-green-800'
+          : 'bg-red-100 text-red-800'
+          }`}>
           {message}
         </div>
       )}
-      
+
       <div className="flex gap-2 mt-4">
         <button
           type="button"
@@ -89,10 +73,12 @@ export default function LoginPage() {
             handleLogin(formData)
           }}
           disabled={isLoading}
-          className="flex-1 p-2 bg-matcha text-white border-none rounded font-semibold cursor-pointer hover:bg-green-700 transition disabled:opacity-50"
+          className="flex-1 p-2 bg-sage text-white border-none rounded font-semibold cursor-pointer hover:bg-matcha transition disabled:opacity-50"
         >
           {isLoading ? 'Loading...' : 'Log in'}
         </button>
+
+        {/*
         <button
           type="button"
           onClick={(e) => {
@@ -105,6 +91,14 @@ export default function LoginPage() {
         >
           {isLoading ? 'Loading...' : 'Sign up'}
         </button>
+        */}
+      </div>
+      <div className='flex justify-center w-full'>
+        <Link href={'/signup'}>
+          <p className='text-center'>
+            Don&apos;t have an account?
+          </p>
+        </Link>
       </div>
     </form>
   )
