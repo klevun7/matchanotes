@@ -3,10 +3,10 @@
 
 import Link from "next/link";
 import { useAuth } from "@/components/AuthProvider"; // Import useAuth
-import { logout } from "@/app/actions/actions"; 
+import { logout } from "@/app/actions/actions";
 
 const Navbar = () => {
-  const { user, isLoading } = useAuth(); 
+  const { user, isLoading } = useAuth();
 
   if (isLoading) {
     return (
@@ -14,7 +14,7 @@ const Navbar = () => {
         <Link href="/" className="text-2xl font-bold text-forest">
           matchanotes
         </Link>
-        <div>Loading...</div> 
+        <div>Loading...</div>
       </div>
     );
   }
@@ -27,7 +27,7 @@ const Navbar = () => {
       <div className="flex space-x-6 items-center">
         {user ? (
           <>
-          <Link href="/matcha" className="hover:text-matcha font-semibold">
+            <Link href="/matcha" className="hover:text-matcha font-semibold">
               matcha
             </Link>
             <Link href="/profile" className="hover:text-matcha font-semibold">

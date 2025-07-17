@@ -1,6 +1,6 @@
 // middleware.ts
-import { NextResponse, type NextRequest } from 'next/server';
-import { createClient } from '@/lib/supabase/middleware'; // We'll create this
+import { NextResponse, type NextRequest } from "next/server";
+import { createClient } from "@/lib/supabase/middleware"; // We'll create this
 
 export async function middleware(request: NextRequest) {
   try {
@@ -11,43 +11,50 @@ export async function middleware(request: NextRequest) {
     // Refresh auth session
     // This will attempt to refresh the user's session if it's expired
     // and update cookies. It's safe for middleware.
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     // Define public paths that anyone can access (including the landing page)
     const publicPaths = [
-      '/', // Your landing page
-      '/login',
-      '/signup',
-      '/error',
-      '/about',
-      '/matcha',
+      "/", // Your landing page
+      "/login",
+      "/signup",
+      "/error",
+      "/about",
+      "/matcha",
       // Example public page
       // Add other public pages here
     ];
     const { pathname } = request.nextUrl;
-    const isPublicPath = publicPaths.includes(request.nextUrl.pathname) || pathname.startsWith('/matcha/');
+    const isPublicPath =
+      publicPaths.includes(request.nextUrl.pathname) ||
+      pathname.startsWith("/matcha/");
 
     // If the user is NOT logged in AND is trying to access a non-public path, redirect to login
     if (!user && !isPublicPath) {
-      const loginUrl = new URL('/login', request.url);
+      const loginUrl = new URL("/login", request.url);
       // Optional: Add a 'next' query param to redirect back after login
       // loginUrl.searchParams.set('next', request.nextUrl.pathname);
       return NextResponse.redirect(loginUrl);
     }
 
     // If the user IS logged in AND is trying to access a login/signup page, redirect to dashboard/home
-    if (user && (request.nextUrl.pathname === '/login' || request.nextUrl.pathname === '/signup')) {
-      return NextResponse.redirect(new URL('/dashboard', request.url)); // Or '/'
+    if (
+      user &&
+      (request.nextUrl.pathname === "/login" ||
+        request.nextUrl.pathname === "/signup")
+    ) {
+      return NextResponse.redirect(new URL("/dashboard", request.url)); // Or '/'
     }
 
     return NextResponse.next();
-
   } catch (error) {
     // If there's an error creating the Supabase client or getting the user,
     // it likely means the session is invalid or cookies are messed up.
     // Redirect to login or error page.
-    console.error('Middleware auth error:', error);
-    const loginUrl = new URL('/login', request.url);
+    console.error("Middleware auth error:", error);
+    const loginUrl = new URL("/login", request.url);
     return NextResponse.redirect(loginUrl);
   }
 }
@@ -64,6 +71,6 @@ export const config = {
      * - /api/ (Supabase auth webhooks or public APIs can be excluded here if needed)
      * - Any other static asset types you have (e.g., .svg, .png)
      */
-    '/((?!_next/static|_next/image|favicon.ico|api).*)',
+    "/((?!_next/static|_next/image|favicon.ico|api).*)",
   ],
 };
