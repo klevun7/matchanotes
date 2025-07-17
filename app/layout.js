@@ -31,8 +31,6 @@ export default async function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider initialUser={user}>
-          {" "}
-          {/* Wrap your content with AuthProvider and pass the user */}
           <Navbar />
           {children}
         </AuthProvider>

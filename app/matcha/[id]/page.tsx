@@ -5,7 +5,8 @@ import ReviewForm from "@/components/ReviewForm";
 import ReviewsList from "@/components/ReviewsList"; // Import the new component
 
 const MatchaProductPage = async ({ params }) => {
-  const { id } = params;
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
 
   if (!id) {
     return <div className="p-6 text-red-600">Product ID not found.</div>;
