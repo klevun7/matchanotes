@@ -1,9 +1,15 @@
 // components/AuthProvider.tsx
 "use client";
 
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
 import { User } from "@supabase/supabase-js";
-import { createClient } from "@/lib/supabase/client"; 
+import { createClient } from "@/lib/supabase/client";
 
 interface AuthContextType {
   user: User | null;
@@ -28,16 +34,16 @@ export const AuthProvider = ({ initialUser, children }: AuthProviderProps) => {
     setIsLoading(false);
 
     // Listen for auth state changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
-          setUser(session?.user || null);
-        } else if (event === 'SIGNED_OUT') {
-          setUser(null);
-        }
-        setIsLoading(false);
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
+        setUser(session?.user || null);
+      } else if (event === "SIGNED_OUT") {
+        setUser(null);
       }
-    );
+      setIsLoading(false);
+    });
 
     return () => {
       subscription.unsubscribe();

@@ -1,6 +1,6 @@
 // lib/supabase/middleware.ts
-import { createServerClient, type CookieOptions } from '@supabase/ssr';
-import { NextResponse, type NextRequest } from 'next/server';
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { NextResponse, type NextRequest } from "next/server";
 
 export const createClient = (request: NextRequest) => {
   // Create an unmodified response
@@ -30,16 +30,16 @@ export const createClient = (request: NextRequest) => {
         },
         remove(name: string, options: CookieOptions) {
           // If the cookie is removed, update the request and response cookie store
-          request.cookies.set(name, '');
+          request.cookies.set(name, "");
           response = NextResponse.next({
             request: {
               headers: request.headers,
             },
           });
-          response.cookies.set(name, '', options);
+          response.cookies.set(name, "", options);
         },
       },
-    }
+    },
   );
 
   return supabase;

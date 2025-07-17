@@ -3,12 +3,12 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'ippodotea.com',
+        protocol: "https",
+        hostname: "ippodotea.com",
       },
       {
-        protocol: 'https',
-        hostname: 'www.marukyu-koyamaen.co.jp',
+        protocol: "https",
+        hostname: "www.marukyu-koyamaen.co.jp",
       },
     ],
   },

@@ -1,15 +1,15 @@
 // components/MatchaSearchWithActions.tsx
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
-import { searchMatchaAction,  } from '@/app/actions/actions';
-import Link from 'next/link'; 
-import Image from 'next/image'; 
-import { ArrowRightIcon } from '@heroicons/react/24/solid'; 
-import { MatchaProduct } from '@/types/product'; 
+import React, { useState, useEffect, useRef } from "react";
+import { searchMatchaAction } from "@/app/actions/actions";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import { MatchaProduct } from "@/types/product";
 
 export default function MatchaSearchWithActions() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState<MatchaProduct[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -25,8 +25,8 @@ export default function MatchaSearchWithActions() {
       clearTimeout(timeoutRef.current);
     }
 
-    if (searchTerm.trim() === '') {
-      setSearchResults([]); 
+    if (searchTerm.trim() === "") {
+      setSearchResults([]);
       setLoading(false);
       setShowSuggestions(false); // Hide suggestions when input is empty
       setTriggerFullSearch(false); // Reset full search trigger
@@ -42,14 +42,13 @@ export default function MatchaSearchWithActions() {
         const data = await searchMatchaAction(searchTerm);
         setSearchResults(data as MatchaProduct[]);
       } catch (err: any) {
-        console.error('Failed to fetch search results:', err);
+        console.error("Failed to fetch search results:", err);
         setError(`Failed to load search results: ${err.message}`);
         setSearchResults([]); // Clear results on error
       } finally {
         setLoading(false);
       }
     }, 500); // 500ms debounce delay
-
 
     return () => {
       if (timeoutRef.current) {
@@ -62,7 +61,7 @@ export default function MatchaSearchWithActions() {
   // This will re-run the search with the current searchTerm, potentially showing
   // a dedicated results page or section, rather than just suggestions.
   useEffect(() => {
-    if (triggerFullSearch && searchTerm.trim() !== '') {
+    if (triggerFullSearch && searchTerm.trim() !== "") {
       setLoading(true);
       setError(null);
       setShowSuggestions(false); // Hide suggestions when performing full search
@@ -72,7 +71,7 @@ export default function MatchaSearchWithActions() {
           const data = await searchMatchaAction(searchTerm);
           setSearchResults(data as MatchaProduct[]); // Update results for full display
         } catch (err: any) {
-          console.error('Failed to perform full search:', err);
+          console.error("Failed to perform full search:", err);
           setError(`Failed to load search results: ${err.message}`);
           setSearchResults([]);
         } finally {
@@ -83,7 +82,6 @@ export default function MatchaSearchWithActions() {
       performFinalSearch();
     }
   }, [triggerFullSearch, searchTerm]);
-
 
   const handleSuggestionClick = (productName: string) => {
     setSearchTerm(productName); // Set input value to clicked suggestion
@@ -100,7 +98,7 @@ export default function MatchaSearchWithActions() {
 
   const handleInputFocus = () => {
     // Only show suggestions if there's a search term and results exist
-    if (searchTerm.trim() !== '' && searchResults.length > 0) {
+    if (searchTerm.trim() !== "" && searchResults.length > 0) {
       setShowSuggestions(true);
     }
   };
@@ -112,7 +110,7 @@ export default function MatchaSearchWithActions() {
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && searchTerm.trim() !== '') {
+    if (e.key === "Enter" && searchTerm.trim() !== "") {
       setTriggerFullSearch(true);
       setShowSuggestions(false);
       inputRef.current?.blur(); // Optionally blur the input after Enter
@@ -120,8 +118,10 @@ export default function MatchaSearchWithActions() {
   };
 
   return (
-    <div className="p-5 max-w-4xl mx-auto relative"> 
-      <div className="flex items-center space-x-2 mb-4"> {/* Container for input and button */}
+    <div className="p-5 max-w-4xl mx-auto relative">
+      <div className="flex items-center space-x-2 mb-4">
+        {" "}
+        {/* Container for input and button */}
         <input
           ref={inputRef}
           type="text"
@@ -138,76 +138,106 @@ export default function MatchaSearchWithActions() {
           className="p-3 bg-sage text-white rounded-lg shadow-sm hover:bg-matcha focus:outline-none focus:ring-2 focus:ring-sage transition duration-200 cursor-pointer"
           title="Search"
         >
-          <ArrowRightIcon className="h-6 w-6" /> 
+          <ArrowRightIcon className="h-6 w-6" />
         </button>
       </div>
 
-
-      {loading && searchTerm.trim() !== '' && !triggerFullSearch && <p className="text-center text-gray-600">Loading suggestions...</p>}
-      {loading && triggerFullSearch && <p className="text-center text-gray-600">Searching...</p>}
+      {loading && searchTerm.trim() !== "" && !triggerFullSearch && (
+        <p className="text-center text-gray-600">Loading suggestions...</p>
+      )}
+      {loading && triggerFullSearch && (
+        <p className="text-center text-gray-600">Searching...</p>
+      )}
       {error && <p className="text-center text-red-600">Error: {error}</p>}
 
       {/* Conditional rendering for suggestions */}
-      {showSuggestions && searchResults.length > 0 && !loading && !error && searchTerm.trim() !== '' && (
-        <ul className="absolute z-10 w-[calc(100%-40px)] bg-white border border-gray-200 rounded-lg shadow-lg max-h-80 overflow-y-auto">
-          {searchResults.map((product) => (
-            <li
-              key={product.id}
-              className="p-3 border-b border-gray-100 flex items-center gap-3 hover:bg-gray-50 last:border-b-0"
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#f0f0f0')}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'white')}
-            >
-              <Link
-                href={`/matcha/${product.id}`}
-                onClick={() => handleSuggestionClick(product.name)}
-                className="flex items-center gap-3 w-full cursor-pointer"
+      {showSuggestions &&
+        searchResults.length > 0 &&
+        !loading &&
+        !error &&
+        searchTerm.trim() !== "" && (
+          <ul className="absolute z-10 w-[calc(100%-40px)] bg-white border border-gray-200 rounded-lg shadow-lg max-h-80 overflow-y-auto">
+            {searchResults.map((product) => (
+              <li
+                key={product.id}
+                className="p-3 border-b border-gray-100 flex items-center gap-3 hover:bg-gray-50 last:border-b-0"
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundColor = "#f0f0f0")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundColor = "white")
+                }
               >
-                {product.image_url && (
-                  <Image
-                    src={product.image_url}
-                    alt={product.name}
-                    className="w-10 h-10 object-cover rounded-md"
-                    width={40}
-                    height={40}
-                  />
-                )}
-                <div>
-                  <strong className="text-gray-800">{product.name}</strong>
-                  <p className="text-sm font-semibold text-gray-500">{product.brand}</p>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+                <Link
+                  href={`/matcha/${product.id}`}
+                  onClick={() => handleSuggestionClick(product.name)}
+                  className="flex items-center gap-3 w-full cursor-pointer"
+                >
+                  {product.image_url && (
+                    <Image
+                      src={product.image_url}
+                      alt={product.name}
+                      className="w-10 h-10 object-cover rounded-md"
+                      width={40}
+                      height={40}
+                    />
+                  )}
+                  <div>
+                    <strong className="text-gray-800">{product.name}</strong>
+                    <p className="text-sm font-semibold text-gray-500">
+                      {product.brand}
+                    </p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
 
       {/* Full search results display (visible after button click or Enter) */}
-      {!loading && !showSuggestions && searchResults.length === 0 && searchTerm.trim() !== '' && !error && (
-        <p className="text-center text-gray-600 mt-4">No results found for &quot;{searchTerm}&quot;.</p>
-      )}
+      {!loading &&
+        !showSuggestions &&
+        searchResults.length === 0 &&
+        searchTerm.trim() !== "" &&
+        !error && (
+          <p className="text-center text-gray-600 mt-4">
+            No results found for &quot;{searchTerm}&quot;.
+          </p>
+        )}
 
       {/* This block will display the full results after a 'full' search is triggered */}
-      {!loading && !showSuggestions && searchResults.length > 0 && !error && triggerFullSearch === false && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-          {searchResults.map((product) => (
-            <div key={product.id} className="border border-gray-200 rounded-lg p-4 text-center shadow-sm">
-              <Link href={`/matcha/${product.id}`}> {/* Link for the full product card */}
-                {product.image_url && (
-                  <Image
-                    src={product.image_url}
-                    alt={product.name}
-                    className="w-full h-48 object-cover rounded-md mb-3"
-                    width={200} // Provide specific width/height for Next/Image
-                    height={200}
-                  />
-                )}
-                <h3 className="text-xl font-semibold mb-1 text-green-800">{product.name}</h3>
-                <p className="text-gray-700">{product.brand}</p>
-              </Link>
-            </div>
-          ))}
-        </div>
-      )}
+      {!loading &&
+        !showSuggestions &&
+        searchResults.length > 0 &&
+        !error &&
+        triggerFullSearch === false && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+            {searchResults.map((product) => (
+              <div
+                key={product.id}
+                className="border border-gray-200 rounded-lg p-4 text-center shadow-sm"
+              >
+                <Link href={`/matcha/${product.id}`}>
+                  {" "}
+                  {/* Link for the full product card */}
+                  {product.image_url && (
+                    <Image
+                      src={product.image_url}
+                      alt={product.name}
+                      className="w-full h-48 object-cover rounded-md mb-3"
+                      width={200} // Provide specific width/height for Next/Image
+                      height={200}
+                    />
+                  )}
+                  <h3 className="text-xl font-semibold mb-1 text-green-800">
+                    {product.name}
+                  </h3>
+                  <p className="text-gray-700">{product.brand}</p>
+                </Link>
+              </div>
+            ))}
+          </div>
+        )}
     </div>
   );
 }

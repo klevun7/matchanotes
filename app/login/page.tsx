@@ -1,39 +1,35 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { login, signup } from "@/app/actions/actions"
-import Link from 'next/link'
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { login, signup } from "@/app/actions/actions";
+import Link from "next/link";
 
 export default function LoginPage() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [message, setMessage] = useState('')
-  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const router = useRouter();
 
   const handleLogin = async (formData: FormData) => {
-    setIsLoading(true)
-    setMessage('')
+    setIsLoading(true);
+    setMessage("");
 
     try {
-      const result = await login(formData)
-      setMessage(result.message)
+      const result = await login(formData);
+      setMessage(result.message);
 
       if (result.success && result.redirectPath) {
-        router.push(result.redirectPath)
+        router.push(result.redirectPath);
       }
     } catch (error) {
-      setMessage('An error occurred during login')
+      setMessage("An error occurred during login");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
-
-
+  };
 
   return (
-    <form
-      className="max-w-[350px] mx-auto mt-12 p-8 border border-gray-200 rounded-lg bg-white shadow-md flex flex-col gap-4"
-    >
+    <form className="max-w-[350px] mx-auto mt-12 p-8 border border-gray-200 rounded-lg bg-white shadow-md flex flex-col gap-4">
       <label htmlFor="email" className="font-medium">
         Email:
       </label>
@@ -56,10 +52,14 @@ export default function LoginPage() {
       />
 
       {message && (
-        <div className={`p-2 rounded text-sm ${message.includes('successful') || message.includes('check your email')
-          ? 'bg-green-100 text-green-800'
-          : 'bg-red-100 text-red-800'
-          }`}>
+        <div
+          className={`p-2 rounded text-sm ${
+            message.includes("successful") ||
+            message.includes("check your email")
+              ? "bg-green-100 text-green-800"
+              : "bg-red-100 text-red-800"
+          }`}
+        >
           {message}
         </div>
       )}
@@ -68,14 +68,14 @@ export default function LoginPage() {
         <button
           type="button"
           onClick={(e) => {
-            const form = e.currentTarget.closest('form') as HTMLFormElement
-            const formData = new FormData(form)
-            handleLogin(formData)
+            const form = e.currentTarget.closest("form") as HTMLFormElement;
+            const formData = new FormData(form);
+            handleLogin(formData);
           }}
           disabled={isLoading}
           className="flex-1 p-2 bg-sage text-white border-none rounded font-semibold cursor-pointer hover:bg-matcha transition disabled:opacity-50"
         >
-          {isLoading ? 'Loading...' : 'Log in'}
+          {isLoading ? "Loading..." : "Log in"}
         </button>
 
         {/*
@@ -93,13 +93,11 @@ export default function LoginPage() {
         </button>
         */}
       </div>
-      <div className='flex justify-center w-full'>
-        <Link href={'/signup'}>
-          <p className='text-center'>
-            Don&apos;t have an account?
-          </p>
+      <div className="flex justify-center w-full">
+        <Link href={"/signup"}>
+          <p className="text-center">Don&apos;t have an account?</p>
         </Link>
       </div>
     </form>
-  )
+  );
 }
