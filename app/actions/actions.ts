@@ -49,7 +49,7 @@ export async function signup(formData: FormData): Promise<AuthActionResult> {
     password: formData.get("password") as string,
   };
 
-  const { error, data: authData } = await supabase.auth.signUp(data); // `data` contains user and session
+  const { error, data: authData } = await supabase.auth.signUp(data); 
 
   if (error) {
     console.error("Signup error:", error.message);
@@ -63,9 +63,6 @@ export async function signup(formData: FormData): Promise<AuthActionResult> {
     return { success: false, message: error.message };
   }
 
-  // Supabase's default behavior for `signUp` when email confirmation is enabled:
-  // It creates the user but returns `session: null`.
-  // The user then needs to click a link in the email to activate their session.
   if (authData.user && !authData.session) {
     return {
       success: true,
