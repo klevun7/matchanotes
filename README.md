@@ -23,8 +23,8 @@ A full-stack web application that allows users to explore, review, and discover 
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`PUBLIC_SUPABASE_URL`
+`PUBLIC_SUPABASE_URL=`
 
-`PUBLIC_SUPABASE_ANON_KEY`
-` `
+`PUBLIC_SUPABASE_ANON_KEY=`
+
 
