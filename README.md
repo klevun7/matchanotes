@@ -13,9 +13,9 @@ A full-stack web application that allows users to explore, review, and discover 
 
 ## Screenshots
 
-![App Screenshot](matcha_landing.png)
-![App Screenshot](matcha_landing2.png)
-![App Screenshot](matcha_landing3.png)
+![App Screenshot](public/readme/matcha_landing.png)
+![App Screenshot](public/readme/matcha_landing2.png)
+![App Screenshot](public/readme/matcha_landing3.png)
 
 
 
