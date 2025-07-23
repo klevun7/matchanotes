@@ -17,14 +17,12 @@ export async function middleware(request: NextRequest) {
 
     // Define public paths that anyone can access (including the landing page)
     const publicPaths = [
-      "/", // Your landing page
+      "/", 
       "/login",
       "/signup",
       "/error",
       "/about",
       "/matcha",
-      // Example public page
-      // Add other public pages here
     ];
     const { pathname } = request.nextUrl;
     const isPublicPath =
@@ -34,7 +32,6 @@ export async function middleware(request: NextRequest) {
     // If the user is NOT logged in AND is trying to access a non-public path, redirect to login
     if (!user && !isPublicPath) {
       const loginUrl = new URL("/login", request.url);
-      // Optional: Add a 'next' query param to redirect back after login
       // loginUrl.searchParams.set('next', request.nextUrl.pathname);
       return NextResponse.redirect(loginUrl);
     }
@@ -50,9 +47,6 @@ export async function middleware(request: NextRequest) {
 
     return NextResponse.next();
   } catch (error) {
-    // If there's an error creating the Supabase client or getting the user,
-    // it likely means the session is invalid or cookies are messed up.
-    // Redirect to login or error page.
     console.error("Middleware auth error:", error);
     const loginUrl = new URL("/login", request.url);
     return NextResponse.redirect(loginUrl);

@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import ReviewForm from "@/components/ReviewForm";
 import ReviewsList from "@/components/ReviewsList"; // Import the new component
 
 const MatchaProductPage = async ({ params }) => {
@@ -52,7 +52,7 @@ const MatchaProductPage = async ({ params }) => {
 
   return (
     <div className="container mx-auto p-6">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+      <div className="max-w-4xl mx-auto bg-white rounded-lg  overflow-hidden">
         <div className="md:flex">
           {product.image_url && (
             <div className="md:flex-shrink-0">
@@ -74,9 +74,6 @@ const MatchaProductPage = async ({ params }) => {
               Origin: {product.origin}
             </p>
             <p className="text-lg text-gray-600 mb-1">Grade: {product.grade}</p>
-            <p className="text-2xl text-sage font-semibold mb-4">
-              ${product.price.toFixed(2)}
-            </p>
             <p className="text-matcha font-semibold leading-relaxed">
               &quot;{product.description}&quot;
             </p>
@@ -105,8 +102,10 @@ const MatchaProductPage = async ({ params }) => {
         </div>
         <div className="p-8 border-t border-gray-200">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Reviews</h2>
-          {user && <ReviewForm matchaId={id} userId={user.id} />}
           <ReviewsList matchaId={id} />
+        </div>
+        <div className="">
+          <Link href={`/matcha/${id}/review`} className="text-shadow-matcha font-semibold ">your thoughts?</Link>
         </div>
       </div>
     </div>
