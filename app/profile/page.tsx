@@ -1,7 +1,12 @@
 import React from "react";
+import Image from "next/image";
 
-const page = () => {
-  return <div>page</div>;
+
+
+
+
+const ProfilePage = () => {
+  
 };
 
-export default page;
+export default ProfilePage;
