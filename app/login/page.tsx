@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { login } from "@/app/actions/actions";
 import Link from "next/link";
+import { FcGoogle } from "react-icons/fc";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -107,8 +108,9 @@ export default function LoginPage() {
       <button
         type="button"
         onClick={handleGoogleSignIn}
-        className="w-full p-3 border border-gray-300 rounded-lg text-gray-700 font-semibold justify-center hover:bg-gray-50 transition-colors"
+        className="w-full p-3 border border-gray-300 rounded-lg text-gray-700 font-semibold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors"
       >
+        <FcGoogle className="w-5 h-5" />
         Sign in with Google
       </button>
 

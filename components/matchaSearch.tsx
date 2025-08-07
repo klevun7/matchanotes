@@ -118,22 +118,20 @@ export default function MatchaSearchWithActions() {
   };
 
   return (
-    <div className="p-5 max-w-4xl mx-auto relative">
-      <div className="flex items-center space-x-2 mb-4">
+    <div className="p-5 mx-auto relative">
+      <div className="flex items-center w-xl sm:max-w-sm space-x-2 mb-4">
         {" "}
-        {/* Container for input and button */}
-  <input
-  ref={inputRef}
-  type="text"
-  placeholder="Search by name or brand..."
-  value={searchTerm}
-  onChange={(e) => setSearchTerm(e.target.value)}
-  onFocus={handleInputFocus}
-  onBlur={handleInputBlur}
-  onKeyDown={handleKeyPress}
-  className="flex-grow w-full max-w-xl p-3 px-4 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-sage"
-/>
-
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Search by name or brand..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          onKeyDown={handleKeyPress}
+          className="flex-grow w-full p-3 px-4 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-sage"
+        />
         <button
           onClick={handleArrowButtonClick}
           className="p-3 bg-sage text-white rounded-lg shadow-sm hover:bg-matcha focus:outline-none focus:ring-2 focus:ring-sage transition duration-200 cursor-pointer"
