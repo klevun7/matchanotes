@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
+import whisk from '../public/whisk.png'; 
+
 
 // Define the types for the component's props
 interface DividerProps {
@@ -19,7 +21,7 @@ const Divider: React.FC<DividerProps> = ({ imageSrc, altText }) => {
       {/* Image in the middle */}
       <div className="px-4">
         <Image
-          src={imageSrc}
+          src={whisk}
           alt={altText}
           width={40}
           height={40}

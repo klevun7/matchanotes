@@ -1,18 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react"; // Import useEffect
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { signup } from "@/app/actions/actions";
+import Link from "next/link";
 
 export default function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
   const router = useRouter();
-
-
   const [shouldRedirect, setShouldRedirect] = useState<{ path: string } | null>(null);
 
-  const handleSignup = async (formData: FormData) => {
+  const handleSignup = async (formData) => {
     setIsLoading(true);
     setMessage('');
 
@@ -30,13 +29,11 @@ export default function SignupPage() {
     }
   };
 
-
   useEffect(() => {
     if (shouldRedirect) {
       const timer = setTimeout(() => {
         router.push(shouldRedirect.path);
       }, 3000); 
-
 
       return () => clearTimeout(timer);
     }
@@ -44,51 +41,67 @@ export default function SignupPage() {
 
   return (
     <form
-      className="max-w-[350px] mx-auto mt-12 p-8 border border-gray-200 rounded-lg bg-white shadow-md flex flex-col gap-4"
+      className="max-w-[400px] mx-auto mt-12 p-10 border border-gray-100 rounded-2xl bg-white shadow-xl flex flex-col gap-6"
     >
-      <label htmlFor="email" className="font-medium">
-        Email:
-      </label>
-      <input
-        id="email"
-        name="email"
-        type="email"
-        required
-        className="p-2 border border-gray-300 rounded text-base"
-      />
-      <label htmlFor="password" className="font-medium">
-        Password:
-      </label>
-      <input
-        id="password"
-        name="password"
-        type="password"
-        required
-        className="p-2 border border-gray-300 rounded text-base"
-      />
+      <h1 className="text-3xl font-bold text-center text-matcha mb-4">Sign Up</h1>
+      
+      <div>
+        <label htmlFor="email" className="font-semibold text-gray-700 block mb-2">
+          Email
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          className="w-full p-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage transition-colors"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="password" className="font-semibold text-gray-700 block mb-2">
+          Password
+        </label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          className="w-full p-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage transition-colors"
+        />
+      </div>
 
       {message && (
-        <div className={`p-2 rounded text-sm ${message.includes('successful') || message.includes('check your email')
-          ? 'bg-green-100 text-green-800'
-          : 'bg-red-100 text-red-800'
-          }`}>
+        <div
+          className={`p-3 rounded-lg text-sm font-medium ${
+            message.includes('successful') || message.includes('check your email')
+              ? 'bg-green-100 text-green-800'
+              : 'bg-red-100 text-red-800'
+          }`}
+        >
           {message}
         </div>
       )}
 
-      <div className="flex gap-2 mt-4">
-        <button
-          type="button"
-          onClick={(e) => {
-            const form = e.currentTarget.closest('form') as HTMLFormElement;
+      <button
+        type="button"
+        onClick={(e) => {
+          const form = e.currentTarget.closest('form');
+          if (form) {
             const formData = new FormData(form);
             handleSignup(formData);
-          }}
-          disabled={isLoading}
-          className="flex-1 p-2 bg-sage text-white border rounded font-semibold cursor-pointer hover:bg-matcha transition disabled:opacity-50"
-        >
-          {isLoading ? 'Loading...' : 'Sign up'}
-        </button>
+          }
+        }}
+        disabled={isLoading}
+        className="w-full p-3 bg-sage text-white rounded-lg font-bold cursor-pointer hover:bg-matcha transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {isLoading ? 'Loading...' : 'Sign up'}
+      </button>
+
+      <div className="flex justify-center w-full mt-2">
+        <Link href={"/login"} className="text-sm text-gray-600 hover:underline">
+          <p className="text-center">Already have an account?</p>
+        </Link>
       </div>
     </form>
   );

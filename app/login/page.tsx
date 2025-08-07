@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { login, signup } from "@/app/actions/actions";
+import { login } from "@/app/actions/actions";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -10,7 +10,7 @@ export default function LoginPage() {
   const [message, setMessage] = useState("");
   const router = useRouter();
 
-  const handleLogin = async (formData: FormData) => {
+  const handleLogin = async (formData) => {
     setIsLoading(true);
     setMessage("");
 
@@ -28,32 +28,51 @@ export default function LoginPage() {
     }
   };
 
+  const handleGoogleSignIn = () => {
+    alert("Google Sign-In functionality is not yet implemented.");
+  };
+
   return (
-    <form className="max-w-[350px] mx-auto mt-12 p-8 border border-gray-200 rounded-lg bg-white shadow-md flex flex-col gap-4">
-      <label htmlFor="email" className="font-medium">
-        Email:
-      </label>
-      <input
-        id="email"
-        name="email"
-        type="email"
-        required
-        className="p-2 border border-gray-300 rounded text-base"
-      />
-      <label htmlFor="password" className="font-medium">
-        Password:
-      </label>
-      <input
-        id="password"
-        name="password"
-        type="password"
-        required
-        className="p-2 border border-gray-300 rounded text-base"
-      />
+    <form className="max-w-[400px] mx-auto mt-12 p-10 border border-gray-100 rounded-2xl bg-white shadow-xl flex flex-col gap-6">
+      <h1 className="text-3xl font-bold text-center text-matcha mb-4">
+        Log In
+      </h1>
+
+      <div>
+        <label
+          htmlFor="email"
+          className="font-semibold text-gray-700 block mb-2"
+        >
+          Email
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          className="w-full p-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage transition-colors"
+        />
+      </div>
+
+      <div>
+        <label
+          htmlFor="password"
+          className="font-semibold text-gray-700 block mb-2"
+        >
+          Password
+        </label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          className="w-full p-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage transition-colors"
+        />
+      </div>
 
       {message && (
         <div
-          className={`p-2 rounded text-sm ${
+          className={`p-3 rounded-lg text-sm font-medium ${
             message.includes("successful") ||
             message.includes("check your email")
               ? "bg-green-100 text-green-800"
@@ -64,37 +83,40 @@ export default function LoginPage() {
         </div>
       )}
 
-      <div className="flex gap-2 mt-4">
-        <button
-          type="button"
-          onClick={(e) => {
-            const form = e.currentTarget.closest("form") as HTMLFormElement;
+      <button
+        type="button"
+        onClick={(e) => {
+          const form = e.currentTarget.closest("form");
+          if (form) {
             const formData = new FormData(form);
             handleLogin(formData);
-          }}
-          disabled={isLoading}
-          className="flex-1 p-2 bg-sage text-white border-none rounded font-semibold cursor-pointer hover:bg-matcha transition disabled:opacity-50"
-        >
-          {isLoading ? "Loading..." : "Log in"}
-        </button>
+          }
+        }}
+        disabled={isLoading}
+        className="w-full p-3 bg-sage text-white rounded-lg font-bold cursor-pointer hover:bg-matcha transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {isLoading ? "Loading..." : "Log in"}
+      </button>
 
-        {/*
-        <button
-          type="button"
-          onClick={(e) => {
-            const form = e.currentTarget.closest('form') as HTMLFormElement
-            const formData = new FormData(form)
-            handleSignup(formData)
-          }}
-          disabled={isLoading}
-          className="flex-1 p-2 bg-gray-100 text-gray-900 border border-gray-300 rounded font-semibold cursor-pointer hover:bg-gray-200 transition disabled:opacity-50"
-        >
-          {isLoading ? 'Loading...' : 'Sign up'}
-        </button>
-        */}
+      <div className="flex items-center my-4">
+        <div className="flex-grow border-t border-gray-300"></div>
+        <span className="mx-4 text-gray-500 text-sm font-medium">OR</span>
+        <div className="flex-grow border-t border-gray-300"></div>
       </div>
-      <div className="flex justify-center w-full">
-        <Link href={"/signup"}>
+
+      <button
+        type="button"
+        onClick={handleGoogleSignIn}
+        className="w-full p-3 border border-gray-300 rounded-lg text-gray-700 font-semibold justify-center hover:bg-gray-50 transition-colors"
+      >
+        Sign in with Google
+      </button>
+
+      <div className="flex justify-center w-full mt-2">
+        <Link
+          href={"/signup"}
+          className="text-sm text-gray-600 hover:underline"
+        >
           <p className="text-center">Don&apos;t have an account?</p>
         </Link>
       </div>

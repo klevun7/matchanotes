@@ -9,7 +9,7 @@
 }
 
 body {
-  --font-family: "General-Sans", sans-serif;
+  --font-family: "Satoshi", sans-serif;
   font-family: var(--font-family);
   color: var(--color-matcha);
 

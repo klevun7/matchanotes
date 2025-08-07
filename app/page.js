@@ -9,13 +9,12 @@ import matcha from "@/public/matcha2.webp";
 import whisk from "@/public/whisk.png";
 import Divider from "@/components/Divider";
 
-
 export default function Home() {
   const [topMatchaProducts, setTopMatchaProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-    function getNoteColor(note) {
+  function getNoteColor(note) {
     const colors = {
       umami: "#756746",
       nutty: "#9e7e4f",
@@ -43,7 +42,7 @@ export default function Home() {
       } catch (err) {
         console.error(
           "Error fetching top matcha products for landing page:",
-          err,
+          err
         );
         setError("Failed to load top matcha products. Please try again later.");
       } finally {
@@ -66,17 +65,17 @@ export default function Home() {
             height={200}
             priority
           />
-          <h1 className="text-4xl font-bold italic text-matcha mb-4">
+          <h1 className="text-4xl font-bold text-matcha mb-4">
             discover the world of matcha!
           </h1>
           <MatchaSearch />
         </div>
       </section>
-      <Divider imageSrc="/whisk.png" altText="Matcha Divider" />
 
       <section className="p-8">
-        <h2 className="text-2xl font-bold text-matcha mb-6">
+        <h2 className="text-2xl font-bold text-matcha mb-6 underline">
           top matcha picks
+          <span className="absolute bottom-0 left-0 w-full h-0.5 bg-matcha-light origin-left transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
         </h2>
 
         {loading && (
@@ -117,7 +116,10 @@ export default function Home() {
                       <div
                         key={index}
                         className="text-xs font-semibold px-2 py-0.5 border-2 rounded-full"
-                        style={{ borderColor: getNoteColor(note), color: getNoteColor(note) }}
+                        style={{
+                          borderColor: getNoteColor(note),
+                          color: getNoteColor(note),
+                        }}
                       >
                         {note}
                       </div>
@@ -128,6 +130,7 @@ export default function Home() {
             ))}
         </div>
       </section>
+      <Divider imageSrc="/whisk.png" altText="Matcha Divider" />
     </main>
   );
 }

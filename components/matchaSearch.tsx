@@ -122,17 +122,18 @@ export default function MatchaSearchWithActions() {
       <div className="flex items-center space-x-2 mb-4">
         {" "}
         {/* Container for input and button */}
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="search by name or brand..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          onFocus={handleInputFocus}
-          onBlur={handleInputBlur}
-          onKeyPress={handleKeyPress} // Add key press handler
-          className="flex-grow p-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-sage" // flex-grow makes it take available space
-        />
+  <input
+  ref={inputRef}
+  type="text"
+  placeholder="Search by name or brand..."
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+  onFocus={handleInputFocus}
+  onBlur={handleInputBlur}
+  onKeyDown={handleKeyPress}
+  className="flex-grow w-full max-w-xl p-3 px-4 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-sage"
+/>
+
         <button
           onClick={handleArrowButtonClick}
           className="p-3 bg-sage text-white rounded-lg shadow-sm hover:bg-matcha focus:outline-none focus:ring-2 focus:ring-sage transition duration-200 cursor-pointer"
@@ -143,10 +144,10 @@ export default function MatchaSearchWithActions() {
       </div>
 
       {loading && searchTerm.trim() !== "" && !triggerFullSearch && (
-        <p className="text-center text-gray-600">Loading suggestions...</p>
+        <p className="text-center text-matcha">Loading suggestions...</p>
       )}
       {loading && triggerFullSearch && (
-        <p className="text-center text-gray-600">Searching...</p>
+        <p className="text-center text-matcha">Searching...</p>
       )}
       {error && <p className="text-center text-red-600">Error: {error}</p>}
 
