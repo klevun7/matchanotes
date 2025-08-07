@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { signup } from "@/app/actions/actions";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import GoogleSignInButton from "@/components/SignInWithGoogle";
 
 export default function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,18 +39,18 @@ export default function SignupPage() {
     if (shouldRedirect) {
       const timer = setTimeout(() => {
         router.push(shouldRedirect.path);
-      }, 3000); 
+      }, 3000);
 
       return () => clearTimeout(timer);
     }
-  }, [shouldRedirect, router]); 
+  }, [shouldRedirect, router]);
 
   return (
     <form
       className="max-w-[400px] mx-auto mt-12 p-10 border border-gray-100 rounded-2xl bg-white shadow-xl flex flex-col gap-6"
     >
       <h1 className="text-3xl font-bold text-center text-matcha mb-4">Sign Up</h1>
-      
+
       <div>
         <label htmlFor="email" className="font-semibold text-gray-700 block mb-2">
           Email
@@ -78,11 +79,10 @@ export default function SignupPage() {
 
       {message && (
         <div
-          className={`p-3 rounded-lg text-sm font-medium ${
-            message.includes('successful') || message.includes('check your email')
+          className={`p-3 rounded-lg text-sm font-medium ${message.includes('successful') || message.includes('check your email')
               ? " bg-matcha-light text-matcha"
               : " bg-red-300 text-red-900"
-          }`}
+            }`}
         >
           {message}
         </div>
@@ -103,22 +103,14 @@ export default function SignupPage() {
         {isLoading ? 'Loading...' : 'Sign up'}
       </button>
 
-      {/* OR Divider */}
+
       <div className="flex items-center my-4">
         <div className="flex-grow border-t border-gray-300"></div>
         <span className="mx-4 text-gray-500 text-sm font-medium">OR</span>
         <div className="flex-grow border-t border-gray-300"></div>
       </div>
 
-      {/* Google Sign-in Button */}
-      <button
-        type="button"
-        onClick={handleGoogleSignIn}
-        className="w-full p-3 border border-gray-300 rounded-lg text-gray-700 font-semibold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors"
-      >
-        <FcGoogle className="w-5 h-5" />
-        Sign up with Google
-      </button>
+      <GoogleSignInButton />
 
       <div className="flex justify-center w-full mt-2">
         <Link href={"/login"} className="text-sm text-gray-600 hover:underline">
