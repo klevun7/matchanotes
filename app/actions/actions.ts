@@ -8,7 +8,7 @@ import { createClient } from "@/lib/supabase/server";
 export type AuthActionResult = {
   success: boolean;
   message: string;
-  redirectPath?: string; // Optional path for client-side redirect
+  redirectPath?: string; 
 };
 
 export async function login(formData: FormData): Promise<AuthActionResult> {
@@ -23,12 +23,12 @@ export async function login(formData: FormData): Promise<AuthActionResult> {
 
   if (error) {
     console.error("Login error:", error.message);
-    return { success: false, message: error.message }; // Return error message
+    return { success: false, message: error.message }; 
   }
 
   // If email confirmation is required and user is not confirmed, session will be null
   if (authData.user && !authData.session && supabase.auth.admin?.getUserById) {
-    // Check if user exists but no session
+
 
     return {
       success: true,
@@ -38,8 +38,8 @@ export async function login(formData: FormData): Promise<AuthActionResult> {
   }
 
   revalidatePath("/", "layout");
-  // Instead of direct redirect here, let the client component handle it.
-  return { success: true, message: "Login successful!", redirectPath: "/" };
+
+  return {success: true, message: "Login successful!", redirectPath: "/" };
 }
 
 export async function signup(formData: FormData): Promise<AuthActionResult> {
@@ -126,7 +126,7 @@ export async function showTopMatcha(): Promise<MatchaProduct[]> {
       .select("*")
       //sort by popularity once reviews are implemented
       //.order('popularity', { ascending: false })
-      .limit(4);
+      .limit(8);
 
     if (error) {
       console.error("Supabase showTopMatcha error:", error);

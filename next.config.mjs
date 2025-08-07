@@ -9,7 +9,16 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "www.marukyu-koyamaen.co.jp",
+        
       },
+      {
+        protocol: "https",
+        hostname: "namimatcha.com"
+      },
+      {
+        protocol: "https",
+        hostname: "www.matchaeologist.com"
+      }
     ],
   },
 };
