@@ -58,15 +58,16 @@ const MatchaProductPage = async ({ params }) => {
       <div className="max-w-4xl mx-auto bg-white rounded-lg  overflow-hidden">
         <div className="md:flex">
           {product.image_url && (
-            <div className="md:flex-shrink-0">
-              <Image
-                src={product.image_url}
-                alt={product.name}
-                width={200}
-                height={200}
-                className="w-full h-64 object-cover md:w-64"
-              />
-            </div>
+<div className="md:flex-shrink-0">
+  <div className="relative w-full h-48 md:w-64 md:h-64">
+    <Image
+      src={product.image_url}
+      alt={product.name}
+      fill
+      className="object-cover"
+    />
+  </div>
+</div>
           )}
           <div className="p-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">

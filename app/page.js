@@ -79,7 +79,7 @@ export default function Home() {
         </h2>
 
         {loading && (
-          <p className="text-center text-gray-700">
+          <p className="text-center text-matcha animate-pulse">
             Loading top matcha products...
           </p>
         )}
