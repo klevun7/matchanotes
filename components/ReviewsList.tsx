@@ -7,7 +7,7 @@ const ReviewsList = async ({ matchaId }) => {
 
   const { data: reviews, error: reviewsError } = await supabase
     .from("reviews")
-    .select("*, users(email)") // <-- CHANGE THIS LINE: Select 'email' from 'profiles'
+    .select("*, users(email)") 
     .eq("matcha_id", matchaId)
     .order("created_at", { ascending: false });
 
