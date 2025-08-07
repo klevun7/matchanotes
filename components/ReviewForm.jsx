@@ -44,7 +44,6 @@ const ReviewForm = ({ matchaId, userId }) => {
 
   return (
     <form onSubmit={handleSubmit} className="mt-8 max-w-lg">
-      <h3 className="text-2xl font-semibold mb-4">Write a Review</h3>
       {feedback && (
         <div
           className={`p-4 mb-4 rounded-lg ${feedback.type === "success" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}

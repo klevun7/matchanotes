@@ -5,9 +5,10 @@ import Image from "next/image";
 import MatchaSearch from "@/components/matchaSearch";
 import { showTopMatcha } from "@/app/actions/actions";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import matcha from "@/public/matcha2.webp";
-import ReviewForm from "@/components/ReviewForm";
+import whisk from "@/public/whisk.png";
+import Divider from "@/components/Divider";
+
 
 export default function Home() {
   const [topMatchaProducts, setTopMatchaProducts] = useState([]);
@@ -35,21 +36,23 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center p-8 ">
-        <Image
-          src={matcha}
-          alt="Matcha Bowl"
-          className="w-48 h-48  object-cover mb-6"
-          width={200}
-          height={200}
-          priority
-        />
-        <h1 className="text-4xl font-bold text-matcha mb-4">
-          discover the world of matcha
-        </h1>
-        <MatchaSearch />
+      <section className="flex flex-row items-center justify-center p-6">
+        <div className="flex flex-col items-center justify-center text-center">
+          <Image
+            src={matcha}
+            alt="Matcha Bowl"
+            className="w-48 h-48 object-contain mb-6"
+            width={200}
+            height={200}
+            priority
+          />
+          <h1 className="text-4xl font-bold italic text-matcha mb-4">
+            discover the world of matcha!
+          </h1>
+          <MatchaSearch />
+        </div>
       </section>
+    <Divider imageSrc="/whisk.png" altText="Matcha Divider" />
 
       <section className="p-8">
         <h2 className="text-2xl font-bold text-matcha mb-6">

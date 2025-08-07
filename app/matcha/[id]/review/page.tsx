@@ -11,7 +11,7 @@ const Review = async ({ params }) => {
     if (!id) {
         return <div className="p-6 text-red-600">Product ID not found.</div>;
     }
-
+    
     const supabase = await createClient();
 
     const {
