@@ -80,8 +80,8 @@ export default function SignupPage() {
         <div
           className={`p-3 rounded-lg text-sm font-medium ${
             message.includes('successful') || message.includes('check your email')
-              ? 'bg-green-100 text-green-800'
-              : 'bg-red-100 text-red-800'
+              ? " bg-matcha-light text-matcha"
+              : " bg-red-300 text-red-900"
           }`}
         >
           {message}
