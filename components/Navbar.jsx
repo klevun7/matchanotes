@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useAuth } from "@/components/AuthProvider";
 import { logout } from "@/app/actions/actions";
-
+import whisk from "@/public/whisk.png";
+import Image from "next/image";
 
 const NavLink = ({ href, children }) => (
   <Link
@@ -24,7 +25,13 @@ const Navbar = () => {
     return (
       <div className="flex justify-between items-center p-4 shadow-md bg-white">
         <Link href="/" className="text-2xl font-bold text-forest">
-          matchanotes
+          <Image
+            src={whisk}
+            alt="Matcha Whisk"
+            width={40}
+            height={40}
+            className="object-contain"
+          />
         </Link>
         <div>Loading...</div>
       </div>
@@ -35,9 +42,17 @@ const Navbar = () => {
     <div className="flex justify-between items-center p-4 shadow-md bg-white">
       <Link
         href="/"
-        className="relative text-2xl font-bold text-forest transition-colors duration-300 hover:text-matcha group"
+        className="flex flex-row relative text-2xl font-bold text-forest transition-colors duration-300 hover:text-matcha group"
       >
+        <Image
+          src={whisk}
+          alt="Matcha Whisk"
+          width={25}
+          height={25}
+          className="object-contain"
+        />
         matchanotes
+
         <span
           className="absolute bottom-0 left-0 w-full h-0.5 bg-matcha-light origin-left transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"
         ></span>
