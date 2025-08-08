@@ -16,19 +16,17 @@ export default function Home() {
 
   function getNoteColor(note) {
     const colors = {
-      umami: "#756746",
+      umami: "#c9786d",
       nutty: "#9e7e4f",
-      grassy: "#779c46",
-      creamy: "#e0dfa8",
+      grassy: "#2d572c",
+      creamy: "#b0ac82",
       vegetal: "#44624a",
-      sweet: "#ad80a9",
       bitter: "#ac9b80",
       floral: "#caa6f7",
-      default: "#ccc",
       rich: "#d4b483",
-      sweet: "#f4cccc",
+      sweet: "#b680ba",
       astringent: "#6e6d57",
-      earthy: "#c9c9c9",
+      earthy: "#635d49",
       default: "#779c46",
     };
     return colors[note.toLowerCase()] || colors.default;
@@ -55,7 +53,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white">
-      <section className="flex flex-row items-center justify-center p-6">
+      <section className="flex flex-row items-center justify-center p-6 max-w-screen">
         <div className="flex flex-col items-center justify-center text-center">
           <Image
             src={matcha}
@@ -71,6 +69,13 @@ export default function Home() {
           <MatchaSearch />
         </div>
       </section>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#658c5e"
+          fillOpacity="1"
+          d="M0,0L26.7,42.7C53.3,85,107,171,160,224C213.3,277,267,299,320,266.7C373.3,235,427,149,480,133.3C533.3,117,587,171,640,181.3C693.3,192,747,160,800,122.7C853.3,85,907,43,960,42.7C1013.3,43,1067,85,1120,112C1173.3,139,1227,149,1280,144C1333.3,139,1387,117,1413,106.7L1440,96L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"
+        ></path>
+      </svg>
 
       <section className="p-8">
         <h2 className="text-2xl font-bold text-matcha mb-6 underline">
@@ -97,7 +102,7 @@ export default function Home() {
               <Link
                 key={product.id}
                 href={`/matcha/${product.id}`}
-                className="flex flex-col items-center bg-white rounded-lg border-2 border-cream shadow p-4 hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
+                className="flex flex-col items-center bg-white rounded-3xl border-2 border-matcha-light shadow p-4 hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
               >
                 <Image
                   src={product.image_url || "/ippodo1.webp"}
@@ -105,6 +110,7 @@ export default function Home() {
                   width={200}
                   height={200}
                   className="w-24 h-24 object-cover mb-4"
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                 />
                 <h3 className="text-lg font-semibold text-green-800 text-center">
                   {product.name}

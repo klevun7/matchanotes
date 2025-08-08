@@ -25,7 +25,7 @@ const Divider: React.FC<DividerProps> = ({ imageSrc, altText }) => {
           alt={altText}
           width={40}
           height={40}
-          className="object-contain"
+          className="object-contain w-auto h-auto"
         />
       </div>
       

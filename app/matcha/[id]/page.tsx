@@ -37,15 +37,15 @@ const MatchaProductPage = async ({ params }) => {
 
   function getNoteColor(note) {
     const colors = {
-      umami: "#756746",
+      umami: "#c9786d",
       nutty: "#9e7e4f",
-      grassy: "#779c46",
-      creamy: "#e0dfa8",
+      grassy: "#2d572c",
+      creamy: "#b0ac82",
       vegetal: "#44624a",
       bitter: "#ac9b80",
       floral: "#caa6f7",
       rich: "#d4b483",
-      sweet: "#f4cccc",
+      sweet: "#b680ba",
       astringent: "#6e6d57",
       earthy: "#c9c9c9",
       default: "#779c46",
