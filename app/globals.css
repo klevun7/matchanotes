@@ -17,3 +17,10 @@ body {
   padding: 0;
   line-height: 1.6;
 }
+
+.abackground {
+  background-image: url("/gradient.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

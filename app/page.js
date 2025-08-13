@@ -8,6 +8,7 @@ import Link from "next/link";
 import matcha from "@/public/matcha2.webp";
 import whisk from "@/public/whisk.png";
 import Divider from "@/components/Divider";
+import MatchaTips  from "@/components/MatchaTips";
 
 export default function Home() {
   const [topMatchaProducts, setTopMatchaProducts] = useState([]);
@@ -78,7 +79,7 @@ export default function Home() {
       </svg>
 
       <section className="p-8">
-        <h2 className="text-2xl font-bold text-matcha mb-6 underline">
+        <h2 className="text-2xl font-bold text-matcha mb-6">
           top matcha picks
           <span className="absolute bottom-0 left-0 w-full h-0.5 bg-matcha-light origin-left transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
         </h2>
@@ -137,6 +138,7 @@ export default function Home() {
         </div>
       </section>
       <Divider imageSrc="/whisk.png" altText="Matcha Divider" />
+      <MatchaTips />
     </main>
   );
 }
