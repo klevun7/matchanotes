@@ -19,7 +19,6 @@ export const metadata = {
   description: "A collaborative platform for sharing and discovering notes",
 };
 
-
 export default async function RootLayout({ children }) {
   const supabase = await createClient(); // Create a Supabase client for server-side
   const {

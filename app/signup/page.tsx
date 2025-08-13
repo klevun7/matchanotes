@@ -9,13 +9,15 @@ import GoogleSignInButton from "@/components/SignInWithGoogle";
 
 export default function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const router = useRouter();
-  const [shouldRedirect, setShouldRedirect] = useState<{ path: string } | null>(null);
+  const [shouldRedirect, setShouldRedirect] = useState<{ path: string } | null>(
+    null,
+  );
 
   const handleSignup = async (formData) => {
     setIsLoading(true);
-    setMessage('');
+    setMessage("");
 
     try {
       const result = await signup(formData);
@@ -25,7 +27,7 @@ export default function SignupPage() {
         setShouldRedirect({ path: result.redirectPath });
       }
     } catch (error) {
-      setMessage('An error occurred during signup');
+      setMessage("An error occurred during signup");
     } finally {
       setIsLoading(false);
     }
@@ -46,13 +48,16 @@ export default function SignupPage() {
   }, [shouldRedirect, router]);
 
   return (
-    <form
-      className="max-w-[400px] mx-auto mt-12 p-10 border border-gray-100 rounded-2xl bg-white shadow-xl flex flex-col gap-6"
-    >
-      <h1 className="text-3xl font-bold text-center text-matcha mb-4">Sign Up</h1>
+    <form className="max-w-[400px] mx-auto mt-12 p-10 border border-gray-100 rounded-2xl bg-white shadow-xl flex flex-col gap-6">
+      <h1 className="text-3xl font-bold text-center text-matcha mb-4">
+        Sign Up
+      </h1>
 
       <div>
-        <label htmlFor="email" className="font-semibold text-gray-700 block mb-2">
+        <label
+          htmlFor="email"
+          className="font-semibold text-gray-700 block mb-2"
+        >
           Email
         </label>
         <input
@@ -65,7 +70,10 @@ export default function SignupPage() {
       </div>
 
       <div>
-        <label htmlFor="password" className="font-semibold text-gray-700 block mb-2">
+        <label
+          htmlFor="password"
+          className="font-semibold text-gray-700 block mb-2"
+        >
           Password
         </label>
         <input
@@ -79,10 +87,12 @@ export default function SignupPage() {
 
       {message && (
         <div
-          className={`p-3 rounded-lg text-sm font-medium ${message.includes('successful') || message.includes('check your email')
+          className={`p-3 rounded-lg text-sm font-medium ${
+            message.includes("successful") ||
+            message.includes("check your email")
               ? " bg-matcha-light text-matcha"
               : " bg-red-300 text-red-900"
-            }`}
+          }`}
         >
           {message}
         </div>
@@ -91,7 +101,7 @@ export default function SignupPage() {
       <button
         type="button"
         onClick={(e) => {
-          const form = e.currentTarget.closest('form');
+          const form = e.currentTarget.closest("form");
           if (form) {
             const formData = new FormData(form);
             handleSignup(formData);
@@ -100,9 +110,8 @@ export default function SignupPage() {
         disabled={isLoading}
         className="w-full p-3 bg-sage text-white rounded-lg font-bold cursor-pointer hover:bg-matcha transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isLoading ? 'Loading...' : 'Sign up'}
+        {isLoading ? "Loading..." : "Sign up"}
       </button>
-
 
       <div className="flex items-center my-4">
         <div className="flex-grow border-t border-gray-300"></div>

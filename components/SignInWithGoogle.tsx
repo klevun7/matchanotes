@@ -1,22 +1,22 @@
-'use client'
+"use client";
 
-import { createClient } from '@/lib/supabase/client'
-import { useRouter } from 'next/navigation'
-import { FcGoogle } from 'react-icons/fc'
+import { createClient } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
 
 const GoogleSignInButton = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   const handleGoogleSignIn = async () => {
-    const supabase = createClient()
+    const supabase = createClient();
     const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-    })
+      provider: "google",
+    });
 
     if (error) {
-      console.error('Error signing in:', error)
+      console.error("Error signing in:", error);
     }
-  }
+  };
 
   return (
     <button
@@ -27,7 +27,7 @@ const GoogleSignInButton = () => {
       <FcGoogle className="w-5 h-5" />
       Sign in with Google
     </button>
-  )
-}
+  );
+};
 
-export default GoogleSignInButton
+export default GoogleSignInButton;

@@ -12,9 +12,7 @@ const NavLink = ({ href, children }) => (
     className="relative font-semibold transition-colors duration-300 hover:text-matcha group"
   >
     {children}
-    <span
-      className="absolute bottom-0 left-0 w-full h-0.5 bg-matcha-light origin-left transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"
-    ></span>
+    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-matcha-light origin-left transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
   </Link>
 );
 
@@ -52,10 +50,7 @@ const Navbar = () => {
           className="object-contain"
         />
         matchanotes
-
-        <span
-          className="absolute bottom-0 left-0 w-full h-0.5 bg-matcha-light origin-left transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"
-        ></span>
+        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-matcha-light origin-left transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
       </Link>
       <div className="flex space-x-6 items-center">
         {user ? (

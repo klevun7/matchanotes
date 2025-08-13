@@ -1,41 +1,45 @@
-'use client'
-import Link from 'next/link'
-import { FcGoogle } from 'react-icons/fc'
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { login } from '@/app/actions/actions'
-import GoogleSignInButton from '@/components/SignInWithGoogle'
+"use client";
+import Link from "next/link";
+import { FcGoogle } from "react-icons/fc";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { login } from "@/app/actions/actions";
+import GoogleSignInButton from "@/components/SignInWithGoogle";
 
 export default function LoginPage() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [message, setMessage] = useState('')
-  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const router = useRouter();
 
   const handleLogin = async (formData) => {
-    setIsLoading(true)
-    setMessage('')
+    setIsLoading(true);
+    setMessage("");
 
     try {
-      const result = await login(formData)
-      setMessage(result.message)
+      const result = await login(formData);
+      setMessage(result.message);
 
       if (result.success && result.redirectPath) {
-        router.push(result.redirectPath)
+        router.push(result.redirectPath);
       }
     } catch (error) {
-      setMessage('An error occurred during login')
+      setMessage("An error occurred during login");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <form className="max-w-[400px] mx-auto mt-12 p-10 border border-gray-100 rounded-2xl bg-white shadow-xl flex flex-col gap-6">
-      <h1 className="text-3xl font-bold text-center text-matcha mb-4">Log In</h1>
-
+      <h1 className="text-3xl font-bold text-center text-matcha mb-4">
+        Log In
+      </h1>
 
       <div>
-        <label htmlFor="email" className="font-semibold text-gray-700 block mb-2">
+        <label
+          htmlFor="email"
+          className="font-semibold text-gray-700 block mb-2"
+        >
           Email
         </label>
         <input
@@ -48,7 +52,10 @@ export default function LoginPage() {
       </div>
 
       <div>
-        <label htmlFor="password" className="font-semibold text-gray-700 block mb-2">
+        <label
+          htmlFor="password"
+          className="font-semibold text-gray-700 block mb-2"
+        >
           Password
         </label>
         <input
@@ -60,34 +67,33 @@ export default function LoginPage() {
         />
       </div>
 
-
       {message && (
         <div
-          className={`p-3 rounded-lg text-sm font-medium ${message.includes('successful') || message.includes('check your email')
-              ? ' bg-matcha-light text-matcha'
-              : ' bg-red-300 text-red-900'
-            }`}
+          className={`p-3 rounded-lg text-sm font-medium ${
+            message.includes("successful") ||
+            message.includes("check your email")
+              ? " bg-matcha-light text-matcha"
+              : " bg-red-300 text-red-900"
+          }`}
         >
           {message}
         </div>
       )}
 
-
       <button
         type="button"
         onClick={(e) => {
-          const form = e.currentTarget.closest('form')
+          const form = e.currentTarget.closest("form");
           if (form) {
-            const formData = new FormData(form)
-            handleLogin(formData)
+            const formData = new FormData(form);
+            handleLogin(formData);
           }
         }}
         disabled={isLoading}
         className="w-full p-3 bg-sage text-white rounded-lg font-bold cursor-pointer hover:bg-matcha transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isLoading ? 'Loading...' : 'Log in'}
+        {isLoading ? "Loading..." : "Log in"}
       </button>
-
 
       <div className="flex items-center my-4">
         <div className="flex-grow border-t border-gray-300"></div>
@@ -95,15 +101,16 @@ export default function LoginPage() {
         <div className="flex-grow border-t border-gray-300"></div>
       </div>
 
-
       <GoogleSignInButton />
 
-
       <div className="flex justify-center w-full mt-2">
-        <Link href={'/signup'} className="text-sm text-gray-600 hover:underline">
+        <Link
+          href={"/signup"}
+          className="text-sm text-gray-600 hover:underline"
+        >
           <p className="text-center">Don&apos;t have an account?</p>
         </Link>
       </div>
     </form>
-  )
+  );
 }

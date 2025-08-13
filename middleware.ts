@@ -17,7 +17,7 @@ export async function middleware(request: NextRequest) {
 
     // Define public paths that anyone can access (including the landing page)
     const publicPaths = [
-      "/", 
+      "/",
       "/login",
       "/signup",
       "/error",

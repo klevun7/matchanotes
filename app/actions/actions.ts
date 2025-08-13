@@ -8,7 +8,7 @@ import { createClient } from "@/lib/supabase/server";
 export type AuthActionResult = {
   success: boolean;
   message: string;
-  redirectPath?: string; 
+  redirectPath?: string;
 };
 
 export async function login(formData: FormData): Promise<AuthActionResult> {
@@ -23,13 +23,11 @@ export async function login(formData: FormData): Promise<AuthActionResult> {
 
   if (error) {
     console.error("Login error:", error.message);
-    return { success: false, message: error.message }; 
+    return { success: false, message: error.message };
   }
 
   // If email confirmation is required and user is not confirmed, session will be null
   if (authData.user && !authData.session && supabase.auth.admin?.getUserById) {
-
-
     return {
       success: true,
       message: "Please check your email to confirm your account and log in.",
@@ -39,7 +37,7 @@ export async function login(formData: FormData): Promise<AuthActionResult> {
 
   revalidatePath("/", "layout");
 
-  return {success: true, message: "Login successful!", redirectPath: "/" };
+  return { success: true, message: "Login successful!", redirectPath: "/" };
 }
 
 export async function signup(formData: FormData): Promise<AuthActionResult> {
@@ -49,7 +47,7 @@ export async function signup(formData: FormData): Promise<AuthActionResult> {
     password: formData.get("password") as string,
   };
 
-  const { error, data: authData } = await supabase.auth.signUp(data); 
+  const { error, data: authData } = await supabase.auth.signUp(data);
 
   if (error) {
     console.error("Signup error:", error.message);

@@ -1,8 +1,6 @@
-
-# 🍵matchanotes 
+# 🍵matchanotes
 
 A full-stack web application that allows users to explore, review, and discover matcha powders from around the world. Inspired by sites like Fragrantica but tailored for matcha enthusiasts, the platform features full-text search, user-generated notes, and curated product pages to help users find their perfect matcha.
-
 
 ## Tech Stack
 
@@ -10,14 +8,11 @@ A full-stack web application that allows users to explore, review, and discover 
 
 **Server:** Supabase(PostgreSQL), Redis
 
-
 ## Screenshots
 
 ![App Screenshot](public/readme/matcha_landing.png)
 ![App Screenshot](public/readme/matcha_landing2.png)
 ![App Screenshot](public/readme/matcha_landing3.png)
-
-
 
 ## Environment Variables
 
@@ -26,5 +21,3 @@ To run this project, you will need to add the following environment variables to
 `PUBLIC_SUPABASE_URL=`
 
 `PUBLIC_SUPABASE_ANON_KEY=`
-
-

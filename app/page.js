@@ -8,7 +8,7 @@ import Link from "next/link";
 import matcha from "@/public/matcha2.webp";
 import whisk from "@/public/whisk.png";
 import Divider from "@/components/Divider";
-import MatchaTips  from "@/components/MatchaTips";
+import MatchaTips from "@/components/MatchaTips";
 
 export default function Home() {
   const [topMatchaProducts, setTopMatchaProducts] = useState([]);
@@ -41,7 +41,7 @@ export default function Home() {
       } catch (err) {
         console.error(
           "Error fetching top matcha products for landing page:",
-          err
+          err,
         );
         setError("Failed to load top matcha products. Please try again later.");
       } finally {

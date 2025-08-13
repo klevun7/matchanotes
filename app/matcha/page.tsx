@@ -38,7 +38,8 @@ export default async function MatchaPage() {
                       {product.brand}
                     </p>
                     <p className="text-sm text-semibold text-gray-500">
-                      Origin: {product.origin}
+                      <strong className="text-gray-600">Origin:</strong>{" "}
+                      {product.origin}
                     </p>
                     <p className="text-sm mt-6 text-green-700 font-semibold">
                       &quot;{product.description}&quot;

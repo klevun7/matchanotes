@@ -1,12 +1,6 @@
 import React from "react";
 import Image from "next/image";
 
-
-
-
-
-const ProfilePage = () => {
-  
-};
+const ProfilePage = () => {};
 
 export default ProfilePage;
