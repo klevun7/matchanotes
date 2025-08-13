@@ -6,7 +6,7 @@ export default async function MatchaPage() {
   const supabase = await createClient();
   const { data: products, error } = await supabase
     .from("matcha_products")
-    .select("id, name, brand, origin, grade, image_url, description, price");
+    .select("id, name, brand, origin, image_url, description");
 
   if (error) {
     return (
