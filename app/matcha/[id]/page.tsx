@@ -14,17 +14,17 @@ const MatchaProductPage = async ({ params }) => {
 
   const supabase = await createClient();
 
-  const { data: product, error: productError } = await supabase
+const [
+  { data: product, error: productError },
+  { data: { user } },
+] = await Promise.all([
+  supabase
     .from("matcha_products")
-    .select(
-      "id, name, brand, origin, grade, image_url, description, price, notes",
-    )
+    .select("id, name, brand, origin, grade, image_url, description, price, notes")
     .eq("id", id)
-    .single();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    .single(),
+  supabase.auth.getUser(),
+]);
 
   if (productError) {
     console.error("Error fetching matcha product:", productError);
