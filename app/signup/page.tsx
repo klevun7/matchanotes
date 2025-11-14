@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { signup } from "@/app/actions/actions";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
-import GoogleSignInButton from "@/components/SignInWithGoogle";
+import GoogleSignInButton from "@/components/GoogleSignInButton";
 
 export default function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);

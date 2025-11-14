@@ -4,7 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { login } from "@/app/actions/actions";
-import GoogleSignInButton from "@/components/SignInWithGoogle";
+import GoogleSignInButton from "@/components/GoogleSignInButton";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);

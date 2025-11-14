@@ -37,8 +37,6 @@ const ReviewForm = ({ matchaId, userId }) => {
         type: "success",
         message: "Review submitted successfully!",
       });
-      // Optionally, you can still reload the page or re-fetch reviews
-      // window.location.reload();
     }
   };
 

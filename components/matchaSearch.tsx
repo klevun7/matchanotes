@@ -57,9 +57,7 @@ export default function MatchaSearchWithActions() {
     };
   }, [searchTerm]); // Re-run effect whenever searchTerm changes
 
-  // Effect for actual "full" search (e.g., when button is clicked or Enter is pressed)
-  // This will re-run the search with the current searchTerm, potentially showing
-  // a dedicated results page or section, rather than just suggestions.
+
   useEffect(() => {
     if (triggerFullSearch && searchTerm.trim() !== "") {
       setLoading(true);
@@ -149,7 +147,6 @@ export default function MatchaSearchWithActions() {
       )}
       {error && <p className="text-center text-red-600">Error: {error}</p>}
 
-      {/* Conditional rendering for suggestions */}
       {showSuggestions &&
         searchResults.length > 0 &&
         !loading &&
@@ -204,7 +201,6 @@ export default function MatchaSearchWithActions() {
           </p>
         )}
 
-      {/* This block will display the full results after a 'full' search is triggered */}
       {!loading &&
         !showSuggestions &&
         searchResults.length > 0 &&

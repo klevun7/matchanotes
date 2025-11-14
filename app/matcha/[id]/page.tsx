@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import ReviewsList from "@/components/ReviewsList"; // Import the new component
+import ReviewsList from "@/components/ReviewsList"; 
 
 const MatchaProductPage = async ({ params }) => {
   const resolvedParams = await params;
@@ -77,7 +77,6 @@ const MatchaProductPage = async ({ params }) => {
             <p className="text-lg text-gray-600 mb-1">
               Origin: {product.origin}
             </p>
-            <p className="text-lg text-gray-600 mb-1">Grade: {product.grade}</p>
             <p className="text-matcha font-semibold leading-relaxed">
               &quot;{product.description}&quot;
             </p>

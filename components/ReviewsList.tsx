@@ -22,10 +22,8 @@ const ReviewsList = async ({ matchaId }) => {
         reviews.map((review) => (
           <div key={review.id} className="border-b border-gray-200 pb-4">
             <div className="flex items-center mb-2">
-              {/* Access review.profiles.email directly */}
               <p className="font-semibold text-lg mr-4">
                 {review.profiles ? review.profiles.email : "Anonymous"}{" "}
-                {/* Use 'email' here */}
               </p>
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
